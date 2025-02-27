@@ -1,10 +1,5 @@
-## Sending Messages
-
-**Send all types of messages with a single function:**
-
-
-### Update sending message
-I'm here to add some that are missing, and some new ones.
+## Update sending message
+I'm here to add some that are missing, and some new ones if use baileys felzar-Baileys.
 
 
 #### Poll Result From Newsletter Message
@@ -45,7 +40,7 @@ await sock.sendMessage(
         footer: "Footer Message",
         cards: [
            {
-              image: { url: 'https://example.jpg' } // or buffer,
+              image: { url: 'https://example.jpg' }, // or buffer,
               title: 'Title Cards',
               caption: 'Caption Cards',
               footer: 'Footer Cards',
@@ -67,7 +62,7 @@ await sock.sendMessage(
               ]
            },
            {
-              video: { url: 'https://example.mp4' } // or buffer,
+              video: { url: 'https://example.mp4' }, // or buffer,
               title: 'Title Cards',
               caption: 'Caption Cards',
               footer: 'Footer Cards',
@@ -191,7 +186,7 @@ await sock.sendMessage(
             jid: "1234@g.us", // Group ID 
             text: "WhatsApp Group Invitation", // Additional information
             inviteCode: "CODE INVITATION", // Group invitation code
-            inviteExpiration: number, // Expiration time in seconds (example: 86400 for 24 hours)
+            inviteExpiration: 86400 * 3, // Expiration time in seconds (example: 86400 for 24 hours)
         } 
     },
     {
@@ -242,7 +237,7 @@ await sock.sendMessage(
 ```
 
 
-#### Request Payment Message
+#### Request Payment Message Available To Quote Message
 ```ts
 // Example non media sticker
 await sock.sendMessage(
@@ -253,7 +248,7 @@ await sock.sendMessage(
            amount: "10000000",
            from: "123456@s.whatsapp.net",
            note: "Hai Guys",
-           background: ...background of the message
+           background: { ...background of the message }
         }
     },
     { quoted : message }
@@ -269,7 +264,7 @@ await sock.sendMessage(
            amount: "10000000",
            from: "123456@s.whatsapp.net",
            sticker: Buffer,
-           background: ...background of the message
+           background: { ...background of the message }
         }
     },
     { quoted : message }
@@ -285,7 +280,7 @@ await sock.sendMessage(
            amount: "10000000",
            from: "123456@s.whatsapp.net",
            sticker: { url: Sticker Url },
-           background: ...background of the message
+           background: { ...background of the message }
         }
     },
     { quoted : message }
@@ -298,13 +293,17 @@ await sock.sendMessage(
 await sock.sendMessage(
    jid, 
    { 
-       event: { 
+       event: {
+           isCanceled: false, // or true for cancel event 
            name: "Name Event", 
            description: "Description Event",
-           location: "Location Event",
+           location: { 
+               degressLatitude: -0, 
+               degressLongitude: - 0 
+           },
            link: Call Link,
-           startTime: 60 * 60 * 24 * 1000,
-           endTime: Time End in Secs,
+           startTime: m.messageTimestamp.low,
+           endTime: m.messageTimestamp.low + 86400, // 86400 is day in seconds
            extraGuestsAllowed: true // or false
        }
    },
